@@ -3,5 +3,5 @@ FROM bcustomer
     JOIN contract ON contract.customer_id = bcustomer.customerid
     JOIN salon ON salon.salonId = contract.salon_id
 WHERE
-    salon.salonId = 2
-    AND commercial_suggest = 1;
+    salon.salonId = room_id
+    AND commercial_suggest = plan_id;
