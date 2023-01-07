@@ -5,4 +5,4 @@ FROM safebox
         contract.safebox_number = safebox.safebox_number 
         AND contract.salon_id = salon.salonId
     WHERE customer_id is NULL
-    AND salon.securitylevelid = 2 AND pricegroup <= 200; 
+    AND salon.securitylevelid = level AND pricegroup <= max_price; 
