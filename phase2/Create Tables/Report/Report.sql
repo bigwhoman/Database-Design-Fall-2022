@@ -4,7 +4,7 @@ CREATE TABLE Report(
     salonID INTEGER,
     employeeID INTEGER,
     ContractID INTEGER,
-    time DATE
+    time DATE,
     PRIMARY KEY(ReportID),
     FOREIGN KEY(employeeID) REFERENCES Employee(id),
     FOREIGN KEY(safeboxID,salonID) REFERENCES safebox(safebox_number,salonID), --> ???????
