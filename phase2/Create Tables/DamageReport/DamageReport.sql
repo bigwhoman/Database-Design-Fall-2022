@@ -1,2 +1,2 @@
 CREATE TABLE
-    DamageReport (damageCost INTEGER, description TEXT,) INHERITS(Report);
+    DamageReport (damageCost INTEGER, description TEXT) INHERITS(Report);

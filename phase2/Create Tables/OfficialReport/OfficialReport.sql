@@ -1,2 +1,2 @@
 CREATE TABLE
-    OfficialReport (cost INTEGER, state TEXT,) INHERITS(Report);
+    OfficialReport (cost INTEGER, state TEXT) INHERITS(Report);

@@ -8,7 +8,7 @@ CREATE TABLE Report(
     PRIMARY KEY(ReportID),
     FOREIGN KEY(employeeID) REFERENCES Employee(id),
     FOREIGN KEY(safeboxID,salonID) REFERENCES safebox(safebox_number,salonID), --> ???????
-    FOREIGN KEY(contractID) REFERENCES 
+    FOREIGN KEY(contractID) REFERENCES Contract(id)
     
 );
 
