@@ -1,18 +1,15 @@
 
+PREPARE getEmployee(INTEGER,INTEGER) AS
+    SELECT
+        employee.personaldata,
+        employee.salary
+    FROM employee
+        JOIN salon ON salon.employeeId = employee.id
+    WHERE
+        salon.securityLevelId BETWEEN $1 AND $2
+    ORDER BY RANDOM();
 
-SELECT
-    employee.personaldata,
-    employee.salary
-FROM employee
-    JOIN salon ON salon.employeeId = employee.id
-WHERE
-    salon.securityLevelId BETWEEN from_level AND to_level
-ORDER BY RANDOM();
+EXECUTE getEmployee(3,5);
+DEALLOCATE getEmployee;
 
-
--- PREPARE foo(INTEGER) AS
---     SELECT  * 
---     FROM    customer
---     WHERE   customerid = $1 ;
--- EXECUTE foo(5);
--- DEALLOCATE foo;
+SELECT * FROM employee JOIN salon ON salon.employeeid = employee.id;
