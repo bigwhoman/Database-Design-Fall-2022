@@ -7,7 +7,7 @@ CREATE TABLE Salon (
     employeeId INTEGER,
     PRIMARY KEY (salonID),
     FOREIGN KEY (securityLevelId) REFERENCES SecurityLevel(level),
-    FOREIGN KEY (employeeId) REFERENCES SecurityLevel(level),
+    FOREIGN KEY (employeeId) REFERENCES Employee(id)
     
 );
 

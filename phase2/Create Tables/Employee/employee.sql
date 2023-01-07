@@ -3,5 +3,5 @@ CREATE TABLE Employee (
     personalData varchar(120),
     password varchar(100),
     salary INT    
-)
+);
 
