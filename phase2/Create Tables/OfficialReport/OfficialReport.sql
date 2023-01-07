@@ -1,6 +1,2 @@
-CREATE TABLE OfficialReport (
-    -- reportID INT primary key ???,
-    cost INTEGER,
-    state TEXT,    
-);
-
+CREATE TABLE
+    OfficialReport (cost INTEGER, state TEXT,) INHERITS(Report);
