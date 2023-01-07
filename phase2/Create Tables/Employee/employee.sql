@@ -4,4 +4,3 @@ CREATE TABLE Employee (
     password varchar(100),
     salary INT    
 );
-
