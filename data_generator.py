@@ -98,7 +98,14 @@ for i in range(10):
             conn.execute(sql)
         except:
             pass
-
+for i in range(20):
+    try:
+        ts = int(time.mktime(datetime.datetime.strptime(
+            str(fake.date_time_this_year()), "%Y-%m-%d %H:%M:%S").timetuple()))
+        sql = f'''INSERT INTO EnterReport VALUES({randint(1, 20)}, {randint(1, 6)}, {randint(1, 5)}, '{fake.date_time_this_year()}')'''
+        conn.execute(sql)
+    except:
+        pass
 for i in range(20):
     try:
         sql = f'''INSERT INTO Report VALUES({i+1}, {randint(1, 20)}, {randint(1, 20)}, '{fake.date_this_year()}')'''
