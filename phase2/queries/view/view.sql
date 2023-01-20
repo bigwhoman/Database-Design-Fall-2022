@@ -20,3 +20,5 @@ ADD
 ALTER TABLE customer DROP column national_number;
 
 SELECT * FROM customer;
+
+
