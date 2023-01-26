@@ -14,12 +14,12 @@ class Customer(BaseUser):
 class Account(models.Model):
     credit = models.IntegerField()
     account_number = models.CharField(max_length=20, primary_key=True)
-    customer = models.ForeignKey(Customer, related_name="account", on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="accounts", on_delete=models.CASCADE)
 class Employee(BaseUser):
     ...
 class Salon(models.Model):
     employee = models.ForeignKey(to=Employee, related_name="salons", on_delete=models.CASCADE)
-    security_level = models.ForeignKey('SecurityLevel', on_delete=models.CASCADE)
+    security_level = models.ForeignKey('SecurityLevel', related_name="salons", on_delete=models.CASCADE)
 
 class SafeBox(models.Model):
     safebox_number = models.IntegerField()
