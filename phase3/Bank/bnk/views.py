@@ -2,6 +2,7 @@ import json
 from http import HTTPStatus
 
 from bnk.models import BankUser
+from bnk.decorators import employee_required
 
 from django.shortcuts import render
 from django.forms.models import model_to_dict
@@ -9,6 +10,7 @@ from django.views import View
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import login, logout, authenticate
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 require_http_methods(["GET"])
@@ -26,6 +28,9 @@ def cancel_contract(request):
 require_http_methods(["POST"])
 def give_safebox_to_customer(request):
     ...
+
+@method_decorator(login_required, name="dispatch")
+@method_decorator(employee_required, name="dispatch")
 class EditCustomerView(View):
     def post(self, request):
         ...
@@ -69,11 +74,11 @@ def register_employee(request):
 
 require_http_methods(["POST"])
 @login_required
-def logout_employee(request):
+def logout_bankuser(request):
     logout(request.user)
 
 require_http_methods(["POST"])
-def login_employee(request):
+def login_bankuser(request):
 
     try:
         json_body = json.loads(request.body)        
@@ -92,10 +97,5 @@ def login_employee(request):
         )
     
     user: BankUser = authenticate(request, username=username, password=password)
-
-    if not (user.is_staff or user.is_superuser):
-        return JsonResponse(
-            {"erorr": "username or password is incorrect"},
-             status=HTTPStatus.UNAUTHORIZED)
 
     login(request, user)
