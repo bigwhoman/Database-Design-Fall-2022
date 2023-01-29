@@ -10,13 +10,13 @@ class Account(models.Model):
     customer = models.ForeignKey(BankUser, related_name="accounts", on_delete=models.CASCADE)
     
 class Salon(models.Model):
-    employee = models.ForeignKey(BankUser, related_name="salons", on_delete=models.CASCADE)
-    security_level = models.ForeignKey('SecurityLevel', related_name="salons", on_delete=models.CASCADE)
+    employee = models.ForeignKey(BankUser, related_name="salons", on_delete=models.SET_NULL, null=True)
+    security_level = models.ForeignKey('SecurityLevel', related_name="salons", on_delete=models.SET_NULL, null=True)
 
 class SafeBox(models.Model):
     safebox_number = models.IntegerField()
     salon = models.ForeignKey(Salon, related_name="safeboxes", on_delete=models.CASCADE)
-    price_group = models.ForeignKey(to="PriceGroup", related_name="safeboxes", on_delete=models.CASCADE)
+    price_group = models.ForeignKey(to="PriceGroup", related_name="safeboxes", on_delete=models.SET_NULL, null=True)
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -38,7 +38,7 @@ class Contract(models.Model):
     customer = models.ForeignKey(BankUser, related_name="contracts", on_delete=models.CASCADE)
     timeplan = models.ForeignKey("TimePlan", related_name= "contracts", on_delete=models.CASCADE)
     paid_amount = models.IntegerField()
-    start_date = models.DateTimeField()
+    start_date = models.DateTimeField(auto_now_add=True)
     is_valid = models.BooleanField(default=True)
     class Meta:
         indexes = [
