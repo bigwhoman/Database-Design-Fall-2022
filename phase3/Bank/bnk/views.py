@@ -37,7 +37,12 @@ class EditCustomerView(View):
         ...
 
 require_http_methods(["POST"])
+@login_required
 def register_employee(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"error":"not allowed"}, status=HTTPStatus.FORBIDDEN
+        )
     try:
         json_body = json.loads(request.body)        
     except json.JSONDecodeError:
