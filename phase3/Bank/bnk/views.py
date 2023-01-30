@@ -23,7 +23,7 @@ def get_safeboxes(request):
     user_credit = user.accounts.aggregate(credit=Sum("credit"))["credit"]
     for salon in salons:
         res[salon.id] = dict()
-        safeboxes = salon.safeboxes.annotate(is_available=~Exists(Contract.objects.filter(is_valid=True, safebox=OuterRef(""))))
+        safeboxes = salon.safeboxes.annotate(is_available=~Exists(Contract.objects.filter(is_valid=True, safebox=OuterRef("safebox_number"), salon=OuterRef("salon_id"))))
         for safebox in safeboxes:
             res[salon.id][safebox.safebox_number] = safebox.is_available and salon.security_level.maximum_amount <= user_credit
     return JsonResponse(res)
