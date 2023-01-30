@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 class BankUser(AbstractUser):    
     REQUIRED_FIELDS = []
-    email = None
+    email = models.CharField(max_length=50)
 
 class Account(models.Model):
-    credit = models.IntegerField()
+    credit = models.IntegerField(default=0)
     account_number = models.CharField(max_length=20, primary_key=True)
     customer = models.ForeignKey(BankUser, related_name="accounts", on_delete=models.CASCADE)
     

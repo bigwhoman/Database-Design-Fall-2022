@@ -80,7 +80,7 @@ WSGI_APPLICATION = "Bank.wsgi.application"
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'postgres', 
 #         'USER': 'postgres', 
-#         'PASSWORD': '123',
+#         'PASSWORD': 'Hooman114',
 #         'HOST': '127.0.0.1', 
 #         'PORT': '5433',
 #     }
